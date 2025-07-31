@@ -109,3 +109,6 @@ Also update the package.json to be able to run the devtools. This needs to be ru
     "devtools": "./node_modules/.bin/vue-devtools" // this
   },
 ```
+
+Setup a multilaunch configuration in Rider to first start `npm run devtools` and after this has started the `npm run dev` command.
+Now Electron is opened with a loaded Vue Devtool window.
