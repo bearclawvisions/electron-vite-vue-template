@@ -1,17 +1,36 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Install with `npm electron-vite@latest <project>`
 
-## Type Support For `.vue` Imports in TS
+## Install prettier
+Install prettier `npm install --save-dev prettier`
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+```json
+// in .prettierrc, might need extra setup via (Rider) File → Settings → Languages & Frameworks → JavaScript → Prettier
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5"
+}
+```
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Install Tailwindcss
+We install tailwindcss with postcss and autoprefixer. Autoprefixer automatically adds vendor prefixes to CSS properties that need them for cross-browser compatibility.
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+`npm install tailwindcss @tailwindcss/postcss postcss autoprefixer`
+
+Add a file named `postcss.config.mjs` at the root of the project and add the below:
+```js
+export default {
+   plugins: {
+      "@tailwindcss/postcss": {},
+      autoprefixer: {},
+   }
+}
+```
+
+Add this line to the main css file: `@import "tailwindcss";`
 
 ## Install Vue-devtools
 Follow instructions according to this website: https://devtools.vuejs.org/guide/standalone
