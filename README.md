@@ -75,5 +75,37 @@ function createWindow() {
    // below for chrome devtools
    // win.webContents.openDevTools()
 }
+```
 
+In the `main.ts` from the Vue application add the devtools like below:
+```js
+import { createApp } from 'vue';
+import { devtools } from '@vue/devtools'; // this
+import './style.css';
+import App from './App.vue';
+
+const app = createApp(App);
+
+app.mount('#app').$nextTick(() => {
+  // Use contextBridge
+  window.ipcRenderer.on('main-process-message', (_event, message) => {
+    console.log(message);
+  });
+});
+
+// this adds the devtools as DI
+if (process.env.NODE_ENV === 'development') {
+  devtools.connect(/* host (the default is "http://localhost"), port (the default is 8090) */);
+}
+
+```
+
+Also update the package.json to be able to run the devtools. This needs to be run before the application itself runs.
+```json
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build && electron-builder",
+    "preview": "vite preview",
+    "devtools": "./node_modules/.bin/vue-devtools" // this
+  },
 ```
